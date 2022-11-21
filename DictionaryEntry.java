@@ -3,17 +3,19 @@ public class DictionaryEntry {
   private String lastName;
   private String streetAddress;
   private String city;
+  private String state;
   private int zipcode;
   private String email;
   private String phoneNumber;
   private int memberNumber;
 
   public DictionaryEntry(String firstName, String lastName, String streetAddress,
-    String city, int zipcode, String email, String phoneNumber, int memberNumber){
+    String city, String state, int zipcode, String email, String phoneNumber, int memberNumber){
       this.firstName = firstName;
       this.lastName = lastName;
       this.streetAddress = streetAddress;
       this.city = city;
+      this.state = state;
       this.zipcode = zipcode;
       this.email = email;
       this.phoneNumber = phoneNumber;
@@ -34,6 +36,10 @@ public class DictionaryEntry {
 
     public void setCity(String city){
       this.city = city;
+    }
+
+    public void setState(String state){
+      this.state = state;
     }
 
     public void setZipcode(int zipcode){
@@ -66,6 +72,10 @@ public class DictionaryEntry {
 
     public String getCity(){
       return city;
+    }
+
+    public String getState(){
+      return state;
     }
 
     public int getZipcode(){

@@ -4,6 +4,4 @@ public class DictionaryTree {
   DictionaryTree(DictionaryTreeNode overallRoot){
     this.overallRoot = overallRoot;
   }
-
-  
 }

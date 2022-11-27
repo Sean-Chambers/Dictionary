@@ -22,6 +22,10 @@ public class DictionaryEntry {
     this.memberNumber = memberNumber;
   }
 
+  public DictionaryEntry(){
+    this(null, null, null, null, null, 0, null, null, 0);
+  }
+
   public void setFirstName(String firstName){
     this.firstName = firstName;
   }
@@ -92,5 +96,12 @@ public class DictionaryEntry {
 
   public int getMemberNumber(){
     return memberNumber;
+  }
+
+  public String toString(){
+    return "Member number: " + memberNumber + "\n\t" + firstName +
+      " " + lastName + "\n\t" + streetAddress + "\n\t" + city +
+      ", " + state + "    " + zipcode + "\n\t" + email + "\n\t" +
+      phoneNumber + "\n";
   }
 }

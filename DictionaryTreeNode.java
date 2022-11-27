@@ -15,9 +15,6 @@ public class DictionaryTreeNode {
   }
 
   public String toString(){
-    return "Member number: " + entry.getMemberNumber() + "\n\t" + entry.getFirstName() +
-      " " + entry.getLastName() + "\n\t" + entry.getStreetAddress() + "\n\t" + entry.getCity() +
-      ", " + entry.getState() + "    " + entry.getZipcode() + "\n\t" + entry.getEmail() + "\n\t" +
-      entry.getPhoneNumber() + "\n";
+    return entry.toString();
   }
 }

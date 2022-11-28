@@ -14,6 +14,10 @@ public class DictionaryTreeNode {
     this.right = right;
   }
 
+  public DictionaryEntry getEntry(){
+    return entry;
+  }
+
   public String toString(){
     return entry.toString();
   }

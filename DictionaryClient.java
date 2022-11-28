@@ -13,14 +13,16 @@ public class DictionaryClient {
       System.out.println("\nEnter a command: ");
       option = input.next().toLowerCase();
       if(option.equals("a")){
-        //memberDictionary.add(createMember(input));
-        System.out.println(new DictionaryTreeNode(createMember(input)));
+        memberDictionary.add(createMember(input));
+        memberDictionary.print();
       } else if(option.equals("r")){
         System.out.println("remove");
       } else if(option.equals("s")){
         System.out.println("search");
       } else if(option.equals("m")){
         System.out.println("modify");
+      } else if(option.equals("p")){
+        System.out.println("print");
       } else if(option.equals("e")){
         outro();
       } else{
@@ -40,6 +42,7 @@ public class DictionaryClient {
     System.out.println("-Remove an entry (r)");
     System.out.println("-Search for an entry (s)");
     System.out.println("-Modify an entry (m)");
+    System.out.println("-Print the dictionary (p)");
     System.out.println("-Exit the program (e)");
   }
 
@@ -59,15 +62,14 @@ public class DictionaryClient {
       entry.setStreetAddress(input.nextLine());
       System.out.println("Enter city: ");
       entry.setCity(input.next());
-      System.out.println("Enter state: ");
+      System.out.println("Enter state abbreviation: ");
       entry.setState(input.next());
       System.out.println("Enter zipcode: ");
       entry.setZipcode(input.nextInt());
       System.out.println("Enter email: ");
       entry.setEmail(input.next());
       System.out.println("Enter phone number: ");
-      input.nextLine();
-      entry.setPhoneNumber(input.nextLine());
+      entry.setPhoneNumber(input.next());
       System.out.println("\n" + entry);
       System.out.println("\nIs this member data correct? (y/n) ");
       confirmation = input.next().toLowerCase();

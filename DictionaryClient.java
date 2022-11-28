@@ -42,7 +42,7 @@ public class DictionaryClient {
   }
 
   public static void intro(){
-    System.out.println("intro\n");
+    System.out.println("intro\n"); //TODO create intro
   }
 
   public static void menu(){
@@ -60,7 +60,7 @@ public class DictionaryClient {
     DictionaryEntry entry = new DictionaryEntry();
     String confirmation = "";
 
-    do{
+    do{ //TODO figure out reading in line input
       System.out.println("Enter member number: ");
       entry.setMemberNumber(input.nextInt());
       System.out.println("Enter first name: ");
@@ -95,7 +95,7 @@ public class DictionaryClient {
   }
 
   public static void outro(){
-    System.out.println("outro");
+    System.out.println("outro"); //TODO create outro
   }
 
   public static void searchMember(DictionaryTree memberDictionary, Scanner input){

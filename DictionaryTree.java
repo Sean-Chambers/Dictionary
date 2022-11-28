@@ -1,5 +1,5 @@
 public class DictionaryTree {
-  DictionaryTreeNode overallRoot;
+  private DictionaryTreeNode overallRoot;
   
   DictionaryTree(DictionaryTreeNode overallRoot){
     this.overallRoot = overallRoot;
@@ -34,5 +34,65 @@ public class DictionaryTree {
       System.out.println(root);
       print(root.right);
     }
+  }
+
+  public void printInOrder(int memberNumber){
+    printInOrder(memberNumber, overallRoot);
+  }
+
+  private void printInOrder(int memberNumber, DictionaryTreeNode root){
+    if(root != null){
+      printInOrder(memberNumber, root.left);
+      if(root.getEntry().getMemberNumber() == memberNumber){
+        System.out.println(root);
+      }
+      printInOrder(memberNumber, root.right);
+    }
+  }
+
+  public void printInOrder(String lastName){
+    printInOrder(lastName, overallRoot);
+  }
+
+  private void printInOrder(String lastName, DictionaryTreeNode root){
+    if(root != null){
+      printInOrder(lastName, root.left);
+      if(root.getEntry().getLastName().equals(lastName)){
+        System.out.println(root);
+      }
+      printInOrder(lastName, root.right);
+    }
+  }
+
+  public void printPreOrder(String lastName){
+    printPreOrder(lastName, overallRoot);
+  }
+
+  private void printPreOrder(String lastName, DictionaryTreeNode root){
+    if(root != null){
+      if(root.getEntry().getLastName().equals(lastName)){
+        System.out.println(root);
+      }
+      printPreOrder(lastName, root.left);
+      printPreOrder(lastName, root.right);
+    }
+  }
+
+  public void printPostOrder(String lastName){
+    printPostOrder(lastName, overallRoot);
+  }
+
+  private void printPostOrder(String lastName, DictionaryTreeNode root){
+    if(root != null){
+      printPostOrder(lastName, root.left);
+      printPostOrder(lastName, root.right);
+      if(root.getEntry().getLastName().equals(lastName)){
+        System.out.println(root);
+      }
+    }
+  }
+
+  public DictionaryTreeNode getOverallRoot(){
+    return overallRoot;
   }
 }

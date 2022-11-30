@@ -27,7 +27,7 @@ public class DictionaryClient {
         memberDictionary.add(createMember(input));
       } else if(option.equals("r")){
         //remove entry from dictionary
-        System.out.println("remove"); //TODO create remove method
+        memberDictionary = removeMember(input, memberDictionary);
       } else if(option.equals("s")){
         //if dictionary is null, print error message
         if(memberDictionary.getOverallRoot() == null){
@@ -129,6 +129,33 @@ public class DictionaryClient {
       }
     } while(!confirmation.equals("y")); //if user response is no, re-prompt for member data
     return entry;
+  }
+
+  //accepts scanner and DictionaryTree
+  //prompts user for member number, then displays the located entry
+  //confirms it should be removed, and returns DictionaryTree for removal
+  public static DictionaryTree removeMember(Scanner input, DictionaryTree memberDictionary){
+    String confirmation = "";
+    int memberNumber;
+    do{
+      //prompt user for member number
+      System.out.println("Enter member number: ");
+      memberNumber = input.nextInt();
+
+      //print out entry and prompt user for data confirmation
+      System.out.println("\n");
+      memberDictionary.printInOrder(memberNumber);
+      System.out.println("\nIs this member data correct? (y/n) ");
+      confirmation = input.next().toLowerCase();
+
+      //if confirmation is invalid, re-prompt user for confirmation
+      while(!confirmation.equals("y") && !confirmation.equals("n")){
+        System.out.println("Sorry, that input is invalid, please try again: ");
+        confirmation = input.next().toLowerCase();
+      }
+    } while(!confirmation.equals("y")); //if user response is no, re-prompt for member data
+    memberDictionary.remove(memberNumber);
+    return memberDictionary;
   }
 
   //accept DictionaryTree for member dictionary and Scanner for input

@@ -148,28 +148,28 @@ public class DictionaryTree {
     return overallRoot;
   }
 
-  //accept a member number for deletion 
-  //public method to delete entry from tree
-  public void delete(int target){
+  //accept a member number for removal 
+  //public method to remove entry from tree
+  public void remove(int target){
     //call private method
-    overallRoot = delete(target, overallRoot);
+    overallRoot = remove(target, overallRoot);
   }
 
   //accepts an int and a DictionaryTreeNode
   //int represents the member number and the DictionaryTreeNode is the root
-  //private method to delete entry from tree
-  private DictionaryTreeNode delete(int target, DictionaryTreeNode root){
+  //private method to remove entry from tree
+  private DictionaryTreeNode remove(int target, DictionaryTreeNode root){
     if(root == null){
       //tree already doesnt contain member number
       return root;
     }else if(target < root.getEntry().getMemberNumber()){
       //target should be on left side
-      //set left node to node returned by recursive delete call
-      root.left = delete(target,root.left);
+      //set left node to node returned by recursive remove call
+      root.left = remove(target,root.left);
     }else if (target > root.getEntry().getMemberNumber()){
       //target should be on right side
-      //set left node to node returned by recursive delete call
-      root.right = delete(target,root.right);
+      //set left node to node returned by recursive remove call
+      root.right = remove(target,root.right);
     }else{
       //in this case the current node is the target
       if(root.right == null && root.left == null){
@@ -194,8 +194,8 @@ public class DictionaryTree {
         //set temp nodes left child to roots left child
         temp.left = root.left;
         //set temp nodes right child to right node without the small value node
-        //this requires calling delete again to remove the moved node
-        temp.right = delete(min.getMemberNumber(),root.right);
+        //this requires calling remove again to remove the moved node
+        temp.right = remove(min.getMemberNumber(),root.right);
         //set root equal to temp
         root = temp;
       }
@@ -205,7 +205,7 @@ public class DictionaryTree {
   }
 
   //finds entry that contains the smallest member number in a subtree
-  //this method is used in delete when the deleted node has 2 children
+  //this method is used in remove when the removed node has 2 children
   private DictionaryEntry minValue(DictionaryTreeNode root){
     //checks if root has a left subtree, if not then root contains smallest value
     return (root.left == null) ? root.getEntry() : minValue(root.left);

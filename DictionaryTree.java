@@ -3,7 +3,7 @@
 //December 6, 2022
 //Lab 6 - Dictionary
 
-//DictionaryTree.java represents a sorted binary tree member dictionary of member entry nodes
+//DictionaryTree.java represents a sorted binary tree member dictionary of member entry nodes, each of which contain biographical details and a unique member number.
 public class DictionaryTree {
   //field
   private DictionaryTreeNode overallRoot;

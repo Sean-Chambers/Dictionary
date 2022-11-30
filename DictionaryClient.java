@@ -5,7 +5,7 @@
 
 import java.util.*;
 
-//DictionaryClient.java allows a user to interact with a memberdictionary by adding, removing
+//DictionaryClient.java allows a user to interact with a member list by adding, removing
 //searching for, and modifying entries, as well as print the entire member dictionary.
 public class DictionaryClient {
   public static void main(String[] args){

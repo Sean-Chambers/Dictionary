@@ -38,7 +38,7 @@ public class DictionaryClient {
         }
       } else if(option.equals("m")){
         //modify dictionary entry
-        System.out.println("modify"); //TODO create modify method
+        memberDictionary = modifyEntry(input, memberDictionary);
       } else if(option.equals("p")){
         //if dictionary is null, print error message
         if(memberDictionary.getOverallRoot() == null){
@@ -137,6 +137,7 @@ public class DictionaryClient {
   public static DictionaryTree removeMember(Scanner input, DictionaryTree memberDictionary){
     String confirmation = "";
     int memberNumber;
+
     do{
       //prompt user for member number
       System.out.println("Enter member number: ");
@@ -145,7 +146,7 @@ public class DictionaryClient {
       //print out entry and prompt user for data confirmation
       System.out.println("\n");
       memberDictionary.printInOrder(memberNumber);
-      System.out.println("\nIs this member data correct? (y/n) ");
+      System.out.println("\nShould this member data be removed? (y/n) ");
       confirmation = input.next().toLowerCase();
 
       //if confirmation is invalid, re-prompt user for confirmation
@@ -202,5 +203,130 @@ public class DictionaryClient {
         memberDictionary.printPostOrder(lastName);
       }
     }
+  }
+  //accepts scanner and DictionaryTree as input
+  //prompts user for member number of entry they want to modify
+  //confirms entry to modify then asks what fields should be changed
+  //confirms changes to fields then deletes and adds entry back to the DictionaryTree
+  //returns the DictionaryTree when entry has been modified
+  public static DictionaryTree modifyEntry(Scanner input, DictionaryTree memberDictionary){
+    String confirmation = "";
+    int memberNumber;
+    
+    do{
+      //prompt user for member number
+      System.out.println("Enter member number: ");
+      memberNumber = input.nextInt();
+
+      //print out entry and prompt user for data confirmation
+      System.out.println("\n");
+      memberDictionary.printInOrder(memberNumber);
+      System.out.println("\nShould this member data be modified? (y/n) ");
+      confirmation = input.next().toLowerCase();
+
+      //if confirmation is invalid, re-prompt user for confirmation
+      while(!confirmation.equals("y") && !confirmation.equals("n")){
+        System.out.println("Sorry, that input is invalid, please try again: ");
+        confirmation = input.next().toLowerCase();
+      }
+    } while(!confirmation.equals("y")); //if user response is no, re-prompt for member data
+
+    //creates copies the entry coresponding to the member number 
+    DictionaryEntry entry = memberDictionary.fetchNode(memberNumber);
+
+    confirmation = "";
+    
+    do{
+      //lists possible options
+      System.out.println("\nWhich field would you like to modify?");
+      System.out.println("\tModify member number: (n)");
+      System.out.println("\tModify first name: (f)");
+      System.out.println("\tModify last name: (l)");
+      System.out.println("\tModify street address: (a)");
+      System.out.println("\tModify city: (c)");
+      System.out.println("\tModify state abbreviation: (s)");
+      System.out.println("\tModify zipcode: (z)");
+      System.out.println("\tModify email: (e)");
+      System.out.println("\tModify phone number: (p)");
+
+      System.out.println("\nEnter a command: ");
+      String option = input.next().toLowerCase();
+
+      switch(option){
+        //this case is when they wish to change the member number
+        case "n":
+          System.out.println("\nThe current member number is " + entry.getMemberNumber());
+          System.out.println("Enter new member number: ");
+          entry.setMemberNumber(input.nextInt());
+          break;
+        //this case is when they wish to change the first name
+        case "f":
+          System.out.println("\nThe current first name is " + entry.getFirstName());
+          System.out.println("Enter new first name: ");
+          entry.setFirstName(input.next());
+          break;
+        //this case is when they wish to change the last name
+        case "l":
+          System.out.println("\nThe current last name is " + entry.getLastName());
+          System.out.println("Enter new last name: ");
+          entry.setLastName(input.next());
+          break;
+        //this case is when they wish to change the street address
+        case "a":
+          System.out.println("\nThe current street address is " + entry.getStreetAddress());
+          System.out.println("Enter new street address: ");
+          entry.setStreetAddress(input.nextLine());
+          break;
+        //this case is when they want to change the city
+        case "c":
+          System.out.println("\nThe current city is " + entry.getCity());
+          System.out.println("Enter new city: ");
+          entry.setCity(input.next());
+          break;
+        //this case is when they want to change the state abbreviation
+        case "s":
+          System.out.println("\nThe current state abbreviation is " + entry.getState());
+          System.out.println("Enter new state abbreviation: ");
+          entry.setState(input.next());
+          break;
+        //this case is when they want to change the zip code
+        case "z":
+          System.out.println("\nThe current zip code is " + entry.getZipcode());
+          System.out.println("Enter new zip code: ");
+          entry.setZipcode(input.nextInt());
+          break;
+        //this case is when they want to change the email
+        case "e":
+          System.out.println("\nThe current email is " + entry.getEmail());
+          System.out.println("Enter new email: ");
+          entry.setEmail(input.next());
+          break;
+        //this case is when they want to change the phone number
+        case "p":
+          System.out.println("\nThe current phone number is " + entry.getPhoneNumber());
+          System.out.println("Enter new phone number: ");
+          entry.setPhoneNumber(input.next());
+          break;
+        default:
+          System.out.println("\nSorry, that input is invalid, please try again: ");
+          continue;
+      }
+
+      System.out.println("\nThe new entry is: \n\n" + entry + "\nIs this correct?");
+      confirmation = input.next().toLowerCase();
+
+      //if confirmation is invalid, re-prompt user for confirmation
+      while(!confirmation.equals("y") && !confirmation.equals("n")){
+        System.out.println("Sorry, that input is invalid, please try again: ");
+        confirmation = input.next().toLowerCase();
+      }
+    } while(!confirmation.equals("y")); //if user response is no, re-prompt for member data
+
+    //remove old entry from tree then add the new entry
+    //this is done in case the member number is changed the tree would be unsorted
+    memberDictionary.remove(memberNumber);
+    memberDictionary.add(entry);
+
+    return memberDictionary;
   }
 }

@@ -210,4 +210,24 @@ public class DictionaryTree {
     //checks if root has a left subtree, if not then root contains smallest value
     return (root.left == null) ? root.getEntry() : minValue(root.left);
   }
+
+  //public method that finds and returns entree coresponding to a member number
+  public DictionaryEntry fetchNode(int memberNumber){
+    //calls private method
+    return fetchNode(memberNumber, overallRoot);
+  }
+
+  //private method that finds and returns entree coresponding to a member number
+  private DictionaryEntry fetchNode(int memberNumber, DictionaryTreeNode root){
+    if(root.getEntry().getMemberNumber() == memberNumber){
+      //base case, member number found
+      return root.getEntry();
+    }else if(root.getEntry().getMemberNumber() < memberNumber){
+      //member number is in right subtree
+      return fetchNode(memberNumber, root.right);
+    }else{
+      //member number is in left subtree
+      return fetchNode(memberNumber, root.left);
+    }
+  }
 }

@@ -212,7 +212,7 @@ public class DictionaryTree {
     return (root.left == null) ? root.getEntry() : minValue(root.left);
   }
 
-  //public method that finds and returns entree coresponding to a member number
+  //public method that finds and returns entry coreesponding to a member number
   public DictionaryEntry fetchNode(int memberNumber){
     //calls private method
     return fetchNode(memberNumber, overallRoot);

@@ -142,7 +142,7 @@ public class DictionaryClient {
   }
 
   //accepts Scanner and DictionaryTree
-  //prompts user for member number, then displays the located entry
+  //prompts user for member number, then displays the located entry,
   //confirms it should be removed, and returns DictionaryTree for removal
   public static DictionaryTree removeMember(Scanner input, DictionaryTree memberDictionary){
     String confirmation = "";

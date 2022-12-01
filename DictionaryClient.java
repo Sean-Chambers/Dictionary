@@ -335,7 +335,7 @@ public class DictionaryClient {
 
     //remove old entry from tree then add the new entry
     //this is done in case the member number is changed the tree would be unsorted
-    memberDictionary.remove(memberNumber);
+    memberDictionary.remove(entry.getMemberNumber());
     memberDictionary.add(entry);
 
     return memberDictionary;

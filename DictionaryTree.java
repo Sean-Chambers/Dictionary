@@ -3,7 +3,8 @@
 //December 6, 2022
 //Lab 6 - Dictionary
 
-//DictionaryTree.java represents a sorted binary tree member dictionary of member entry nodes, each of which contain biographical details and a unique member number.
+//DictionaryTree.java represents a sorted binary tree member dictionary of member entry nodes,
+//each of which contain biographical details and a unique member number.
 public class DictionaryTree {
   //field
   private DictionaryTreeNode overallRoot;
@@ -160,7 +161,7 @@ public class DictionaryTree {
   //private method to remove entry from tree
   private DictionaryTreeNode remove(int target, DictionaryTreeNode root){
     if(root == null){
-      //tree already doesnt contain member number
+      //tree already doesn't contain member number
       return root;
     }else if(target < root.getEntry().getMemberNumber()){
       //target should be on left side
@@ -173,7 +174,7 @@ public class DictionaryTree {
     }else{
       //in this case the current node is the target
       if(root.right == null && root.left == null){
-        //target is a leaf node, no need to handel children
+        //target is a leaf node, no need to handle children
         //return null object to remove pointer
         return null;
       }else if(root.left == null){
@@ -191,11 +192,11 @@ public class DictionaryTree {
         //set temp node to entry with smallest member number in right subtree
         DictionaryEntry min = minValue(root.right);
         DictionaryTreeNode temp = new DictionaryTreeNode(min);
-        //set temp nodes left child to roots left child
+        //set temp node's left child to root's left child
         temp.left = root.left;
-        //set temp nodes right child to right node without the small value node
+        //set temp node's right child to right node without the small value node
         //this requires calling remove again to remove the moved node
-        temp.right = remove(min.getMemberNumber(),root.right);
+        temp.right = remove(min.getMemberNumber(), root.right);
         //set root equal to temp
         root = temp;
       }
@@ -217,7 +218,7 @@ public class DictionaryTree {
     return fetchNode(memberNumber, overallRoot);
   }
 
-  //private method that finds and returns entree coresponding to a member number
+  //private method that finds and returns entry corresponding to a member number
   private DictionaryEntry fetchNode(int memberNumber, DictionaryTreeNode root){
     if(root.getEntry().getMemberNumber() == memberNumber){
       //base case, member number found

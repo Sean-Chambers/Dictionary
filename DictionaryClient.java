@@ -26,8 +26,13 @@ public class DictionaryClient {
         //add entry to dictionary
         memberDictionary.add(createMember(input));
       } else if(option.equals("r")){
-        //remove entry from dictionary
-        memberDictionary = removeMember(input, memberDictionary);
+        //if dictionary is null, print error message
+        if(memberDictionary.getOverallRoot() == null){
+          System.out.println("Sorry, there is nothing in the dictionary.");
+        } else{
+          //remove entry from dictionary
+          memberDictionary = removeMember(input, memberDictionary);
+        }
       } else if(option.equals("s")){
         //if dictionary is null, print error message
         if(memberDictionary.getOverallRoot() == null){
@@ -37,8 +42,13 @@ public class DictionaryClient {
           searchMember(memberDictionary, input);
         }
       } else if(option.equals("m")){
-        //modify dictionary entry
-        memberDictionary = modifyEntry(input, memberDictionary);
+        //if dictionary is null, print error message
+        if(memberDictionary.getOverallRoot() == null){
+          System.out.println("Sorry, there is nothing in the dictionary.");
+        } else{
+          //modify dictionary entry
+          memberDictionary = modifyEntry(input, memberDictionary);
+        }
       } else if(option.equals("p")){
         //if dictionary is null, print error message
         if(memberDictionary.getOverallRoot() == null){
@@ -96,7 +106,7 @@ public class DictionaryClient {
     String confirmation = "";
 
     //prompt user for member data and add to entry
-    do{ //TODO figure out reading in line input
+    do{ 
       System.out.println("Enter member number: ");
       entry.setMemberNumber(input.nextInt());
       System.out.println("Enter first name: ");
@@ -131,7 +141,7 @@ public class DictionaryClient {
     return entry;
   }
 
-  //accepts scanner and DictionaryTree
+  //accepts Scanner and DictionaryTree
   //prompts user for member number, then displays the located entry
   //confirms it should be removed, and returns DictionaryTree for removal
   public static DictionaryTree removeMember(Scanner input, DictionaryTree memberDictionary){
@@ -204,7 +214,8 @@ public class DictionaryClient {
       }
     }
   }
-  //accepts scanner and DictionaryTree as input
+
+  //accepts Scanner and DictionaryTree as input
   //prompts user for member number of entry they want to modify
   //confirms entry to modify then asks what fields should be changed
   //confirms changes to fields then deletes and adds entry back to the DictionaryTree
@@ -231,13 +242,13 @@ public class DictionaryClient {
       }
     } while(!confirmation.equals("y")); //if user response is no, re-prompt for member data
 
-    //creates copies the entry coresponding to the member number 
+    //create copy of the entry corresponding to the member number 
     DictionaryEntry entry = memberDictionary.fetchNode(memberNumber);
 
     confirmation = "";
     
     do{
-      //lists possible options
+      //list possible options
       System.out.println("\nWhich field would you like to modify?");
       System.out.println("\tModify member number: (n)");
       System.out.println("\tModify first name: (f)");
